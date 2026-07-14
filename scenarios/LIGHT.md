@@ -17,11 +17,15 @@ O sistema utiliza um sensor óptico baseado em fotorresistor (LDR) para monitora
 Para o desenvolvimento e simulação no ambiente Wokwi, os seguintes componentes e identificadores devem ser mapeados no arquivo `diagram.json`:
 
 - **Microcontrolador:** ESP32 DevKit C v4 (ESP32 comum).
+
 <img width="151" height="269" alt="{530B2ACC-0EF3-438A-A21D-6F977BFB2616}" src="https://github.com/user-attachments/assets/757f01c2-ed9e-4969-b2d1-e63671587d8d" />
+
 - **Sensor Óptico (LDR):** Mapeado com o ID `ldr1`, responsável por ler a variação de luminosidade em _lux_.
 <img width="170" height="83" alt="{3C212723-78F4-4114-AAD1-D56870D27BD4}" src="https://github.com/user-attachments/assets/260000ca-ee39-4829-b90f-29ab51008a98" />
+
 - **Botão de Reset:** Mapeado com o ID `btn1`, operando em modo Pull-Up ou Pull-Down externo/interno para o reset manual.
 <img width="74" height="60" alt="{901FF8E7-F33E-44C2-8B56-396CB919DD39}" src="https://github.com/user-attachments/assets/042727f2-3bfc-4eab-96bf-74acd93fcf5d" />
+
 - **Interface de Comunicação:** Saída Serial (UART) para transmissão de logs e telemetria.
 
 ---
