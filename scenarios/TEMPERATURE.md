@@ -14,7 +14,7 @@ O sistema utiliza um botão físico para detectar o estado de abertura de uma po
 
 Para o desenvolvimento e simulação no ambiente Wokwi, os seguintes componentes e identificadores devem ser mapeados no arquivo `diagram.json`:
 
-- **Microcontrolador:** ESP32 ou Arduino Uno.
+- **Microcontrolador:** ESP32.
 - **Sensor de Temperatura (MPU6050 IMU):** Mapeado obrigatoriamente com o ID `imu1`.
 - **Fim de Curso / Sensor de Porta (Botão):** Mapeado obrigatoriamente com o ID `btn1`, simulando o estado da porta (Pressionado/Fechado = `1`, Solto/Aberto = `0`).
 - **Interface de Comunicação:** Saída Serial (UART) para transmissão de logs de status, alarmes e telemetria para a esteira de integração contínua (CI).
