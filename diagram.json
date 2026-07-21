@@ -1,7 +1,33 @@
 {
   "version": 1,
-  "author": "Uri Shaked",
+  "author": "Ualace Henrique",
   "editor": "wokwi",
-  "parts": [ { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} } ],
-  "connections": [ [ "esp:TX", "$serialMonitor:RX", "", [] ], [ "esp:RX", "$serialMonitor:TX", "", [] ] ]
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 156.8,
+      "left": -248.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 83,
+      "left": 163.2,
+      "attrs": { "color": "green", "xray": "1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ldr1:GND", "esp:GND.1", "black", [ "h19.2", "v-29.2" ] ],
+    [ "ldr1:VCC", "esp:3V3", "red", [ "h9.6", "v-144" ] ],
+    [ "ldr1:AO", "esp:13", "orange", [ "h38.4", "v-39.1" ] ],
+    [ "ldr1:DO", "esp:D2", "blue", [ "h48", "v-19.8" ] ],
+    [ "btn1:1.r", "esp:3V3", "red", [ "h9.8", "v-105.6", "h-259.2", "v38.4" ] ],
+    [ "btn1:2.l", "esp:5", "blue", [ "h0" ] ]
+  ],
+  "dependencies": {}
 }
