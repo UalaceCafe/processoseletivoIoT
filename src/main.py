@@ -1,7 +1,7 @@
 from machine import Pin
 import time
 
-from ldr import LDR
+from . import ldr
 
 LDR_ANALOG_PIN = 13
 BUTTON_PIN = 5
