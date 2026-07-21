@@ -96,8 +96,8 @@ if __name__ == "__main__":
     prod_ct = ProductionCounter(ldr, button)
 
     while True:
+        time.sleep(250)
+
         now = time.ticks_ms()
         prod_ct.check_ldr_state(now)
         prod_ct.check_button_state(now)
-
-        time.sleep(20)
