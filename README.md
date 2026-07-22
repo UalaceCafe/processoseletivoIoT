@@ -1,350 +1,80 @@
-# Processo Seletivo – Intensivo Maker | IoT
-
-## Etapa Prática – Sistemas Embarcados
-
-Bem-vindo(a) à **etapa prática do processo seletivo para o Intensivo Maker | IoT**.
-
-Esta atividade tem como objetivo avaliar suas competências em **Sistemas Embarcados**, com foco em **organização de projeto, lógica de firmware e simulação de hardware**, a partir da aplicação prática dos conhecimentos adquiridos nos cursos EAD da etapa anterior.
-
-> **Objetivo principal**  
-> Avaliar sua capacidade de **planejar, estruturar e desenvolver** uma solução funcional de sistemas embarcados, seguindo boas práticas de engenharia.
-
----
-
-## Antes de Tudo
-
-Se você **nunca utilizou Git ou GitHub**, não se preocupe.  
-Siga atentamente os passos abaixo.
-
----
-
-### 1 - Criação de Conta no GitHub
-
-1. Acesse: <https://github.com>
-2. Clique em **Sign up**
-3. Crie sua conta gratuita seguindo as instruções da plataforma
-
-> O GitHub será utilizado para:
->
-> - Envio do seu projeto
-> - Versionamento do código
-> - Correção e validação automática via GitHub Actions
-
----
-
-### 2 - Instalação do Git
-
-O **Git** é a ferramenta responsável pelo controle de versões do seu código.
-
-### Windows
-
-Baixe e instale o **Git Bash**:  
-<https://git-scm.com/downloads>
-
-### Linux / macOS
-
-Verifique se o Git já está instalado:
-
-```bash
-git --version
-```
-
-> Caso não esteja, instale pelo gerenciador de pacotes do seu sistema.
-
-## Preparando o Ambiente
-
-Para desenvolver o desafio, você deverá criar uma cópia deste repositório no seu GitHub.
-
-### 1 - Fork do Repositório
-
-No canto superior direito desta página, clique em Fork
-
-<img width="219" height="45" alt="image" src="https://github.com/user-attachments/assets/5d629626-513a-445c-ba0f-e5bb3e225187" />
-
-Uma cópia do repositório será criada no seu perfil do GitHub
-
-> O Fork permite que você trabalhe de forma independente, sem alterar o repositório original do processo seletivo.
-
-### 2 - Clone do Repositório
-
-No repositório do seu Fork, clique em **<> Code**
-
-<img width="149" height="52" alt="image" src="https://github.com/user-attachments/assets/abbd331b-a005-4633-89c6-afd16acbe828" />
-
-Copie a URL e execute no terminal:
-
-```bash
-git clone https://github.com/SEU_USUARIO/nome-do-repositorio.git
-cd nome-do-repositorio
-```
-
-> O comando git clone cria uma cópia local do repositório para desenvolvimento.
-
-### 3 - Preparação do Ambiente de Execução
-
-Você pode executar o projeto de duas formas. Escolha apenas uma.
-
-#### Opção A – Ambiente Python Local
-
-**Requisitos:**
-
-- Python 3.10 ou 3.11
-- pip
-
-**Instale as dependências:**
-
-```bash
-pip install -r requirements.txt
-```
-
-#### Opção B – Dev Container (Recomendado)
-
-Este repositório inclui um Dev Container, garantindo um ambiente padronizado.
-
-**Requisitos:**
-
-- VS Code
-- Docker instalado
-- Extensão Dev Containers
-
-**Passos:**
-
-1. Abra o repositório no VS Code
-2. Clique em “Reopen in Container”
-3. Aguarde a criação automática do ambiente
-
-> Todas as dependências serão instaladas automaticamente.
-
-## Criando sua API Key do Wokwi
-
-A simulação do projeto será executada automaticamente via GitHub Actions, utilizando o Wokwi CLI.
-
-Para isso, você precisa gerar uma API Key.
-
-1. Acesse: <https://wokwi.com/dashboard/ci>
-2. Faça login (Google ou GitHub)
-3. Clique em Generate API Token
-4. Copie a chave gerada (exemplo: wokwi-xxxxxxxx)
-
-> Importante
-
-- Nunca faça commit dessa chave
-- Ela deve ser armazenada apenas como secret no GitHub
-
-## Configurando a API Key no GitHub (Secrets)
-
-**No repositório do seu Fork:**
-
-1. Vá em Settings
-2. Acesse Secrets and variables → Actions
-3. Clique em New repository secret
-4. Nome: WOKWI_API_KEY
-5. Valor: sua chave gerada
-6. Salve
-
-> As GitHub Actions do template já estão preparadas para usar essa variável automaticamente.
-
-## Desafio Técnico
-
-Você deverá desenvolver um projeto de sistemas embarcados simulados, utilizando Python e Wokwi.
-
-### Estrutura mínima esperada
-
-```text
-/project
- ├── src/
- │   └── main.py        # Código principal do projeto
- ├── wokwi.toml         # Configuração da simulação
- ├── diagram.json       # Circuito no Wokwi
- └── README.md          # Explicação do seu projeto
-```
-
-> Você pode expandir essa estrutura se desejar, desde que mantenha os arquivos essenciais.
-
-### Escolha do cenário
-
-No diretório "scenarios" existem arquivos .md e pastas referentes a diferentes desafios. Selecione apenas um deles e mantenha apenas a pasta e .md referente ao desafio a ser desenvolvido, deletando os demais. Isso fará com o que o fluxo de testes automáticos selecione o fluxo de acordo com o desafio escolhido.
-
-### Como Desenvolver seu Projeto
-
-O desenvolvimento acontece principalmente nos arquivos abaixo:
-
-#### src/main.py
-
-- Código Python executado na simulação
-- Implementa a lógica do sistema embarcado
-- Exemplos: controle de LEDs, leitura de sensores, estados, temporizações, etc.
-
-#### diagram.json
-
-- Define o hardware virtual do projeto
-- Componentes como:
-  - LEDs
-  - Botões
-  - Sensores
-  - Placa microcontroladora
-
-#### wokwi.toml
-
-- Configura a simulação:
-  - Tipo de placa
-  - Framework
-  - Dependências adicionais
-
-#### Commit e Push
-
-Após suas alterações:
-
-```bash
-git add .
-git commit -m "Descrição clara do que foi feito"
-git push
-```
-
-### Execução Automática (GitHub Actions)
-
-A cada push, o GitHub Actions irá automaticamente:
-
-- Executar o pipeline de build
-- Rodar a simulação via Wokwi CLI
-- Validar que o projeto executa sem erros
-
-### Caso algo falhe
-
-- Vá até a aba Actions
-- Analise os logs da execução
-- Corrija e envie novamente
-
-## Critérios de Avaliação
-
-Esta etapa será avaliada considerando:
-
-- Funcionamento correto da simulação
-- Código organizado e legível
-- Estrutura de arquivos correta
-- Uso adequado do Wokwi
-- Commits claros e bem descritos
-- Projeto executando sem falhas nas Actions
-
----
-
-## Submissão Final
-
-Após concluir o desenvolvimento:
-
-1. Verifique se o projeto **executa sem erros** nas GitHub Actions
-2. Confirme que todos os arquivos obrigatórios estão presentes
-3. Copie o link do **seu repositório no GitHub**
-
-Envie o link conforme as orientações do processo seletivo na plataforma do **PNAAT**.
-
----
-
-## Relatório do Candidato
-
-O arquivo **`README.md` do seu repositório** deve ser utilizado como o  
-**relatório final do desafio técnico**.
-
-Preencha todas as seções abaixo de forma **clara, objetiva e técnica**.
-
-> **Dica importante**  
-> Não é necessário um relatório extenso.  
-> O principal critério é demonstrar **clareza nas decisões técnicas**, organização e entendimento do sistema embarcado desenvolvido.
-> Não mantenha os demais conteúdos escritos nesse arquivo README, aqui devem ser concentradas apenas informações referentes ao projeto desenvolvido.
-
----
+# Relatório - Processo Seletivo – Intensivo Maker | IoT
 
 ### Identificação do Candidato
 
-- **Nome completo:**
-- **GitHub:**
+- **Nome completo:** Ualace Henrique Santos Café
+- **GitHub:** [https://github.com/UalaceCafe](https://github.com/UalaceCafe)
 
 ---
 
 ## Visão Geral da Solução
 
-Descreva, em poucas palavras:
-
-- Qual é o objetivo do seu projeto
-- O que o sistema embarcado simulado faz
-- Como o usuário interage com ele (se aplicável)
+O projeto tem como objetivo o desenvolvimento de uma solução embarcada para um sistema de contagem automática de itens em linhas de produção manuais ou semiautomáticas através do uso de um sensor dependente de luz (LDR) e de um botão push simples. A implementação garante que não sejam necessárias anotações por parte de terceiros e que métricas de produção possam ser fornecidas automaticamente, em tempo real.
 
 ---
 
 ## Arquitetura do Sistema Embarcado
 
-Explique a arquitetura lógica do seu projeto, abordando:
+**Fluxo principal (`main.py`):** o programa roda em um `while True` não-bloqueante, com uma espera de 20 ms entre execuções. A cada iteração, o tempo atual é obtido (`time.ticks_ms()`) e são chamados dois métodos: `check_ldr_state()` e `check_button_state()`.
 
-- Fluxo principal do programa (`main.py`)
-- Estrutura de estados, loops ou temporizações
-- Como os componentes interagem entre si
+**Firmware do sensor `LDR`:** o método privado `_lux()` converte a leitura bruta do ADC em uma estimativa de luminosidade, usando o modelo de resistência do fotorresistor dado na documentação do Wokwi. A tensão é limitada ao intervalo `[0.001, 3.299]` para evitar erro de domínio (divisão por zero ou exponenciação que resulta em número complexo) quando a leitura satura. A partir de `_lux()`, dois métodos públicos expõem a lógica de decisão à classe `ProductionCounter`: `is_blocked()` (lux abaixo de `low_thres`) e `is_free()` (lux acima de `high_thres`).
 
-Se desejar, utilize tópicos ou um pequeno diagrama em texto.
+
+**Máquina de estados da esteira:**
+
+```
+FREE  --lux < 100 (objeto)-->  BLOCKED
+BLOCKED  --lux > 500 (ambiente)-->  FREE  (incrementa contador)
+```
+
+As variáveis `low_thres` e `high_thres`, como mencionado anteriormente, definem quais valores de luminosidade que servem de limiar para determinar se um objeto está obstruindo o sensor (isto é, há um objeto a ser contado) ou não, respectivamente. Daí, o incremento do contador de peças ocorre na transição `BLOCKED -> FREE`, garantindo que a peça tenha passado completamente pelo sensor.
+
+**Detecção de micro-parada:** enquanto o estado permanece `BLOCKED`, verifica-se a cada ciclo se o tempo desde que o sensor foi obstruído é maior ou igual ao tempo máximo aceito (isto é, `now - block_start >= 5000 ms`). Se sim, o alerta é emitido uma única vez (garantido pela flag `has_reported_stop`), evitando spam na saída serial.
+
+**Reset de turno:** como requerido, um botão é usado para resetar o estado do sistema. Para garantir uma leitura confiável do mesmo, é implementado um algoritmo de debounce via software, através de uma máquina de estados independente baseada em borda + duração. É detectada a borda de subida do botão (`pressed_edge`), o tempo atual é registrado, e ao detectar a borda de descida (`released_edge`), o tempo pressionado é calculado. Assim, `_reset_shift()` (isto é, o reset de turno em si) só é executado se esse intervalo for maior que 50 ms (definido na constante `DEBOUNCE_MS`).
 
 ---
 
 ## Componentes Utilizados na Simulação
 
-Liste os principais componentes definidos no `diagram.json`, por exemplo:
+| Componente | ID | Conexões | Função |
+|:-:|:-:|:-|:-|
+| Placa ESP32-DevKitC V4 | esp | - | Microcontrolador principal. É nele que é implementado toda  a lógica do firmware e por onde ocorre a comunicação serial.
+| Sensor dependente de luz (LDR)* | ldr1 | O sensor é alimentado através dos pinos de 3.3V e GND da ESP32; o pino analógico é conectado ao pino 13 da placa; o pino digital, ao D2, mas não é utilizado. | Como sua resistência varia de acordo com a intensidade de luz detectada, é usado para realizar a contagem das peças na esteira.
+| Botão push | btn1 | O terminal 1 é conectado ao pino de 3.3V da placa; o terminal 2, ao pino 5. | É usado para resetar o estado do sistema.
 
-- Tipo de placa utilizada
-- LEDs, botões, sensores, atuadores, etc.
-- Função de cada componente no sistema
+Os componentes e as conexões acima também podem ser vistos no arquivo [diagram.json](diagram.json).
+
+\* Os valores dos atributos `rl10` e `gamma`, necessários para o cálculo da resistência do LDR, foram os padrões do Wokwi, `50` e `0.7`, respectivamente.
 
 ---
 
 ## Decisões Técnicas Relevantes
 
-Explique brevemente decisões importantes tomadas durante o desenvolvimento, como:
+O código foi organizado em duas classes com responsabilidades separadas: `LDR`, que abstrai a leitura do sensor, converte o valor do ADC em luminosidade e implementa a lógica de verificação dos limiares de luminosidade; e `ProductionCounter`, que concentra a lógica principal e as máquinas de estado. Essa divisão evita que a fórmula fotométrica se misture com as regras de contagem, facilitando manutenção e testes isolados. Alguns parâmetros, como pinos da placa utilizados, o limiar de micro-parada e o tempo de debounce foram extraídos como constantes nomeadas no topo do arquivo, em vez de números soltos no código, tornando-os fáceis de localizar e ajustar.
 
-- Organização do código
-- Uso de funções, estados ou constantes
-- Estratégias para temporização ou controle lógico
+Os estados da esteira (`FREE`/`BLOCKED`) foram representados de forma simples, como um atributo do tipo string, o que é suficiente para uma máquina de apenas dois estados sem adicionar complexidade desnecessária. Para evitar oscilações causadas por ruído do sensor e condições variáveis de iluminação ambiente, dois limiares de luminosidade (um para "bloqueado" e outro para "livre") foram usados, em vez de um único valor de corte, criando uma histerese que estabiliza as transições de estado.
+
+Como especificado nos requisitos, a implementação focou em manter toda a temporização de forma não-bloqueante: tanto a detecção de micro-parada quanto o debounce do botão são feitos por comparação de timestamps (via `time.ticks_diff`), sem uso de `sleep()` na lógica de detecção. Isso permite que o sensor de luz e botão o sejam verificados no mesmo laço principal, sem que um bloqueie o outro. Complementarmente, uma flag de controle garante que o alerta de micro-parada seja emitido uma única vez por ocorrência, evitando poluição da saída serial enquanto a condição persiste.
 
 ---
 
 ## Resultados Obtidos
 
-Descreva o comportamento final do sistema:
+O sistema foi validado com sucesso nos três cenários de teste do Wokwi CI. No **Cenário 1**, a sequência `lux: 800 → 50 → 800` (bloqueio de 300 ms) resultou na mensagem `"Peca detectada! Total: 1"`, confirmando que o contador só incrementa na borda de subida, após a peça passar completamente pelo sensor.
 
-- O que funciona corretamente
-- Quais requisitos foram atendidos
-- Resultado observado na simulação do Wokwi
+No **Cenário 2**, o sensor foi mantido em `lux: 50` por 5 segundos contínuos, disparando corretamente o alerta `"Alerta: Micro-parada detectada!"` assim que o limiar `MICRO_STOP_TIME_LIMIT_MS` (ou seja, 5s) foi atingido, validando o cálculo de tempo não-bloqueante do firmware.
 
----
+No **Cenário 3**, o botão foi pressionado por 200 ms — acima do limiar de debounce de 50 ms — e o sistema respondeu com `"Turno resetado com sucesso. Contadores zerados."`, confirmando que o estado interno foi reiniciado corretamente.
 
-## Comentários Adicionais (Opcional)
-
-Utilize este espaço para comentar, se desejar:
-
-- Dificuldades encontradas
-- Limitações da solução
-- Melhorias que você faria com mais tempo
-- Principais aprendizados durante o desafio
+Em todos os testes, as mensagens seriais corresponderam ao esperado, sem contagens duplicadas, alertas repetidos ou resets falsos. Assim, os resultados evidenciam que a estratégia adotada, baseada em polling não bloqueante, histerese de luminosidade e debounce temporal, permitiu tratar corretamente todos os cenários de estímulo definidos no CI.
 
 ---
 
-> Este relatório faz parte da avaliação técnica.  
-> Clareza, objetividade e organização são tão importantes quanto o funcionamento do código.
+## Comentários Adicionais
 
----
+A implementação da lógica de debounce do botão de reset foi umas das dificuldades principais. Em versões anteriores, a abordagem adotada sempre causava *timeout* e leituras incorretas em um ou mais testes de CI, exigindo modificações até chegar à versão baseada em detecção de borda com medição do tempo pressionado, que se mostrou mais estável.
 
-## Especificação dos Testes Automatizados (Wokwi CI)
+Como limitação, a solução assume um único objeto por vez na esteira; peças muito próximas entre si (menor que o tempo de resposta do loop) poderiam não ser distinguidas corretamente. Em revisões futuras, seria interessante adicionar um cálculo de tempo de ciclo médio entre peças e talvez persistir os dados de produção, já que atualmente tudo é perdido ao reiniciar o turno.
 
-Para que o projeto seja validado com sucesso na esteira de integração contínua (CI), o firmware escrito em MicroPython deve interagir corretamente com as leituras dos sensores descritos em cada cenário e enviar as mensagens de status exatas.
-
-### Requisitos Críticos de Implementação
-
-1. **Casamento Exato de Strings:** O Wokwi CI faz uma verificação estrita caractere por caractere. Se houver divergência em maiúsculas/minúsculas, acentuação ou falta de pontuação, o teste irá falhar.
-2. **Arquitetura Não-Bloqueante:** Evite o uso de funções bloqueantes. Elas podem fazer com que o firmware perca a janela de tempo em que o simulador altera o peso, quebrando a sincronia do teste automatizado.
-
----
-
-## Suporte
-
-Em caso de dúvidas:
-
-- Consulte o material dos cursos EAD
-- Leia atentamente este README
-- Analise os logs das GitHub Actions
-- Utilize os canais oficiais para contato com os instrutores
+O maior aprendizado foi a importância da temporização não-bloqueante em sistemas embarcados: usar `time.ticks_diff()` em vez de `sleep()` para controlar lógica de estado é uma mudança simples, mas que foi essencial para manter o firmware responsivo e testável, vide o caso do debounce, que deixou isso mais evidente na prática.
