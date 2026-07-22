@@ -20,7 +20,7 @@ class LDR:
 
     def lux(self):
         voltage = (self.adc.read() * 3.3) / 4095.0
-        res = 2000 * voltage / (1 - voltage / 5)
+        res = 2000 * voltage / (1 - voltage / 3.3)
         return (self.rl10 * 1e3 * (10**self.gamma) / res)**(1.0 / self.gamma)
 
     def is_blocked(self):
