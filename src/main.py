@@ -102,4 +102,4 @@ if __name__ == "__main__":
         prod_ct.check_ldr_state(now)
         prod_ct.check_button_state(now)
 
-        time.sleep_ms(250)
+        time.sleep_ms(20)
