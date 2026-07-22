@@ -5,7 +5,7 @@ LDR_ANALOG_PIN = 13
 BUTTON_PIN = 5
 
 MICRO_STOP_TIME_LIMIT_MS = 5000
-DEBOUNCE_MS = 30
+DEBOUNCE_MS = 50
 
 # https://docs.wokwi.com/parts/wokwi-photoresistor-sensor
 class LDR:
@@ -72,25 +72,26 @@ class ProductionCounter:
     def check_button_state(self, now):
         # Debounce and reset state
         cur = self.button.value()
-        if cur != self.last_button_state:
-            self.last_button_state = cur
+        pressed_edge = (cur == 1 and self.last_button_state == 0)
+        released_edge = (cur == 0 and self.last_button_state == 1)
+        self.last_button_state = cur
+
+        if pressed_edge:
             self.last_button_change = now
 
-        if cur == 1:
-            if time.ticks_diff(now, self.last_button_change) >= DEBOUNCE_MS:
-                self.piece_counter = 0
-                self.block_start = None
-                self.has_reported_stop = False
-                self.state = "FREE"
+        if released_edge and self.last_button_change is not None:
+            held_ms = time.ticks_diff(now, self.last_button_change)
+            self.last_button_change = None
+            if held_ms >= DEBOUNCE_MS:
+                self._reset_shift()
 
-                print("Turno resetado com sucesso. Contadores zerados.")
+    def _reset_shift(self):
+        self.piece_counter = 0
+        self.block_start = None
+        self.has_reported_stop = False
+        self.state = "FREE"
 
-                while(self.button.value()):
-                    time.sleep_ms(10)
-
-                self.last_button_state = 0
-                self.last_button_change = time.ticks_ms()
-
+        print("Turno resetado com sucesso. Contadores zerados.")
 
 if __name__ == "__main__":
     ldr = LDR(LDR_ANALOG_PIN)
