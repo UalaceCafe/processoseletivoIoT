@@ -7,7 +7,7 @@ BUTTON_PIN = 5
 MICRO_STOP_TIME_LIMIT_MS = 5000
 DEBOUNCE_MS = 50
 
-# https://docs.wokwi.com/parts/wokwi-photoresistor-sensor
+# Based on: https://docs.wokwi.com/parts/wokwi-photoresistor-sensor
 class LDR:
     def __init__(self, pin, rl10=50, gamma=0.7, low_thres=100, high_thres=500):
         self.adc = ADC(Pin(pin))
@@ -28,6 +28,10 @@ class LDR:
         voltage = (self.adc.read() * 3.3) / 4095.0
         # Clamp voltage to [0.001, 3.299] to avoid noisy readings that may cause a domain error in the lux calculation
         voltage = min(max(voltage, 0.001), 3.299)
+
+        # From the documented example:
+        # float resistance = 2000 * voltage / (1 - voltage / 5);
+        # float lux = pow(RL10 * 1e3 * pow(10, GAMMA) / resistance, (1 / GAMMA));
         res = 2000 * voltage / (1 - voltage / 3.3)
         return (self.rl10 * 1e3 * (10**self.gamma) / res)**(1.0 / self.gamma)
 
