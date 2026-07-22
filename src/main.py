@@ -75,7 +75,7 @@ class ProductionCounter:
             self.last_button_change = now
 
         if cur == 1:
-            if time.tickes_diff(now, self.last_button_change) >= DEBOUNCE_MS:
+            if time.ticks_diff(now, self.last_button_change) >= DEBOUNCE_MS:
                 self.piece_counter = 0
                 self.block_start = None
                 self.has_reported_stop = False
