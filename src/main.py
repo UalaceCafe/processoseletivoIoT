@@ -19,7 +19,7 @@ class LDR:
         self.adc.atten(ADC.ATTN_11DB)
 
     def lux(self):
-        voltage = (self.adc.read() * 3.3) / 1024.0
+        voltage = (self.adc.read() * 3.3) / 4095.0
         res = 2000 * voltage / (1 - voltage / 5)
         return (self.rl10 * 1e3 * (10**self.gamma) / res)**(1.0 / self.gamma)
 
