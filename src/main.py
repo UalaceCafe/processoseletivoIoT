@@ -70,7 +70,6 @@ class ProductionCounter:
 
     # D. Rotina de Reset de Turno
     def check_button_state(self, now):
-        # Debounce and reset state
         cur = self.button.value()
         pressed_edge = (cur == 1 and self.last_button_state == 0)
         released_edge = (cur == 0 and self.last_button_state == 1)
