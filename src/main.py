@@ -83,7 +83,7 @@ class ProductionCounter:
 
                 print("Turno resetado com sucesso. Contadores zerados.")
 
-                while(button.value()):
+                while(self.button.value()):
                     time.sleep_ms(10)
 
                 self.last_button_state = 0
