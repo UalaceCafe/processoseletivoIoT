@@ -5,7 +5,7 @@ LDR_ANALOG_PIN = 13
 BUTTON_PIN = 5
 
 MICRO_STOP_TIME_LIMIT_MS = 5000
-DEBOUNCE_MS = 50
+DEBOUNCE_MS = 30
 
 # https://docs.wokwi.com/parts/wokwi-photoresistor-sensor
 class LDR:
